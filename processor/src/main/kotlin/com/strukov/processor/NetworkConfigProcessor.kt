@@ -2,27 +2,22 @@ package com.strukov.processor
 
 import com.google.devtools.ksp.processing.*
 import com.google.devtools.ksp.symbol.*
-import com.google.devtools.ksp.validate
 import com.strukov.processor.extensions.appendText
 import java.io.OutputStream
 import kotlin.properties.Delegates
 
-// Разобрать работу валидатора. Кастомный валидатор? gradlew :workload:build --no-daemon -Dorg.gradle.debug=true -Dkotlin.compiler.execution.strategy=in-process
-
-class NetworkConfigProcessor(
+internal class NetworkConfigProcessor(
     val codeGenerator: CodeGenerator,
     val logger: KSPLogger
 ) : SymbolProcessor {
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
         val symbols = resolver.getSymbolsWithAnnotation(checkNotNull(EnvironmentConfig::class.qualifiedName))
-        // Multiple round processing https://kotlinlang.org/docs/ksp-multi-round.html
 
         symbols
             .filter {
                 val classDeclaration = it as? KSClassDeclaration
                 if (classDeclaration?.classKind != ClassKind.INTERFACE) {
-                    // если передавать classDeclaration, то будет ссылка на объявление в коде (удобно!)
                     logger.error("Use kotlin interface with @EnvironmentConfig!", classDeclaration)
                 }
                 classDeclaration?.classKind == ClassKind.INTERFACE
@@ -84,7 +79,7 @@ class NetworkConfigProcessor(
     }
 }
 
-class NetworkConfigProcessorProvider : SymbolProcessorProvider {
+internal class NetworkConfigProcessorProvider : SymbolProcessorProvider {
     override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
         return NetworkConfigProcessor(environment.codeGenerator, environment.logger)
     }
