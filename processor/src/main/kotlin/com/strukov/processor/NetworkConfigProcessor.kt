@@ -2,6 +2,7 @@ package com.strukov.processor
 
 import com.google.devtools.ksp.processing.*
 import com.google.devtools.ksp.symbol.*
+import com.strukov.processor.extensions.appendText
 import java.io.OutputStream
 import kotlin.properties.Delegates
 
@@ -82,8 +83,4 @@ internal class NetworkConfigProcessorProvider : SymbolProcessorProvider {
     override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
         return NetworkConfigProcessor(environment.codeGenerator, environment.logger)
     }
-}
-
-private fun OutputStream.appendText(str: String) {
-    this.write(str.toByteArray())
 }

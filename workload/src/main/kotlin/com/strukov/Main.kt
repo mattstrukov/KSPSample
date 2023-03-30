@@ -2,10 +2,16 @@ package com.strukov
 
 import com.strukov.processor.Environment
 import com.strukov.processor.EnvironmentConfig
+import com.strukov.processor.UrlPrinter
 import com.strukov.processor.Url
 
 internal fun main() {
-    println(SampleConfigUrl(EnvironmentSettings()).url)
+    SampleUrlPrinter().print()
+}
+
+@UrlPrinter
+internal interface SampleUrl {
+    val sampleConfigUrl: SampleConfigUrl
 }
 
 @EnvironmentConfig
