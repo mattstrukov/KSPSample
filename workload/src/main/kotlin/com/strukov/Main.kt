@@ -2,11 +2,15 @@ package com.strukov
 
 import com.strukov.processor.Environment
 import com.strukov.processor.EnvironmentConfig
+import com.strukov.processor.EnvironmentSettings
 import com.strukov.processor.Url
 
 internal fun main() {
-    println(SampleConfigUrl(EnvironmentSettings()).url)
+    println(SampleConfigUrl(SampleEnvironmentSettings()).url)
 }
+
+@EnvironmentSettings
+interface SampleEnvironment
 
 @EnvironmentConfig
 internal interface SampleConfig {

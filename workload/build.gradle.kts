@@ -12,6 +12,12 @@ dependencies {
     ksp(project(":processor"))
 }
 
+ksp {
+    arg("PROD", "prod")
+    arg("TEST", "test")
+    arg("DEV", "dev")
+}
+
 kotlin {
     sourceSets.main {
         kotlin.srcDir("build/generated/ksp/main/kotlin")
