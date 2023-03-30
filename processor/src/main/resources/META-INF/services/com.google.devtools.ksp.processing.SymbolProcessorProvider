@@ -1,2 +1,3 @@
 com.strukov.processor.NetworkConfigProcessorProvider
+com.strukov.processor.UrlPrinterProcessorProvider
 com.strukov.processor.EnvironmentSettingsProcessorProvider

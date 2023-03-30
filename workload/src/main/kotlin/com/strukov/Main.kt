@@ -3,17 +3,23 @@ package com.strukov
 import com.strukov.processor.Environment
 import com.strukov.processor.EnvironmentConfig
 import com.strukov.processor.EnvironmentSettings
+import com.strukov.processor.UrlPrinter
 import com.strukov.processor.Url
 
-fun main() {
-    println(SampleConfigUrl(SampleEnvironmentSettings()).url)
+internal fun main() {
+    SampleUrlPrinter().print()
+}
+
+@UrlPrinter
+internal interface SampleUrl {
+    val sampleConfigUrl: SampleConfigUrl
 }
 
 @EnvironmentSettings
-interface SampleEnvironment
+internal interface SampleEnvironment
 
 @EnvironmentConfig
-interface SampleConfig {
+internal interface SampleConfig {
     @Url(environment = Environment.PROD, name = "https://www.prod.com")
     val prod: String
 

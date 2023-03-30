@@ -6,7 +6,7 @@ import com.strukov.processor.extensions.appendText
 import java.io.OutputStream
 import kotlin.properties.Delegates
 
-class EnvironmentSettingsProcessor(
+internal class EnvironmentSettingsProcessor(
     private val codeGenerator: CodeGenerator,
     private val logger: KSPLogger,
     private val options: Map<String, String>
@@ -62,7 +62,7 @@ class EnvironmentSettingsProcessor(
     }
 }
 
-class EnvironmentSettingsProcessorProvider : SymbolProcessorProvider {
+internal class EnvironmentSettingsProcessorProvider : SymbolProcessorProvider {
     override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
         return EnvironmentSettingsProcessor(environment.codeGenerator, environment.logger, environment.options)
     }
