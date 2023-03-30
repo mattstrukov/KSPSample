@@ -2,6 +2,8 @@ package com.strukov.processor
 
 import com.google.devtools.ksp.processing.*
 import com.google.devtools.ksp.symbol.*
+import com.google.devtools.ksp.validate
+import com.strukov.processor.extensions.appendText
 import java.io.OutputStream
 import kotlin.properties.Delegates
 
@@ -49,7 +51,7 @@ class NetworkConfigProcessor(
 
             file.appendText("package $packageName\n\n")
             file.appendText("import com.strukov.processor.Environment\n\n")
-            file.appendText("public class $className(private val environmentSettings: EnvironmentSettings) {\n")
+            file.appendText("internal class $className(private val environmentSettings: SampleEnvironmentSettings) {\n")
             file.appendText("\tinternal val url get() = environments[environmentSettings.stage].orEmpty()\n")
             file.appendText("\tprivate val environments = mapOf<String, String>(")
 
@@ -86,8 +88,4 @@ class NetworkConfigProcessorProvider : SymbolProcessorProvider {
     override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
         return NetworkConfigProcessor(environment.codeGenerator, environment.logger)
     }
-}
-
-private fun OutputStream.appendText(str: String) {
-    this.write(str.toByteArray())
 }

@@ -13,7 +13,9 @@ dependencies {
 }
 
 ksp {
-    arg("default", "www.default.prod.com")
+    arg("PROD", "prod")
+    arg("TEST", "test")
+    arg("DEV", "dev")
 }
 
 kotlin {
