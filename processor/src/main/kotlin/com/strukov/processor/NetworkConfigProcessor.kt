@@ -37,7 +37,7 @@ internal class NetworkConfigProcessor(
 
             file = codeGenerator.createNewFile(
                 Dependencies(
-                    true,
+                    false,
                     classDeclaration.containingFile!!
                 ),
                 packageName,
