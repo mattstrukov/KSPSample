@@ -36,7 +36,7 @@ internal class EnvironmentSettingsProcessor(
 
             file = codeGenerator.createNewFile(
                 Dependencies(
-                    true,
+                    false,
                     classDeclaration.containingFile!!
                 ),
                 packageName,

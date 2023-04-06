@@ -43,7 +43,7 @@ internal class UrlPrinterProcessor(
 
             file = codeGenerator.createNewFile(
                 Dependencies(
-                    true,
+                    false,
                     classDeclaration.containingFile!!
                 ),
                 packageName,
